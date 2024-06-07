@@ -1,0 +1,447 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Stock Price Tracker API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/getStockPricesBySymbols": {
+            "post": {
+                "tags": [
+                    "Stock Prices"
+                ],
+                "summary": "Get stock prices by symbols",
+                "operationId": "b4a3e6d147689846288271a43aa62c7c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "symbols": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "AAPL",
+                                            "GOOG",
+                                            "MSFT"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "properties": {
+                                            "symbol": {
+                                                "description": "Stock symbol",
+                                                "type": "string",
+                                                "example": "AAPL"
+                                            },
+                                            "open": {
+                                                "description": "Opening price",
+                                                "type": "number",
+                                                "example": 145.67
+                                            },
+                                            "close": {
+                                                "description": "Closing price",
+                                                "type": "number",
+                                                "example": 146.78
+                                            },
+                                            "high": {
+                                                "description": "Highest price",
+                                                "type": "number",
+                                                "example": 147
+                                            },
+                                            "low": {
+                                                "description": "Lowest price",
+                                                "type": "number",
+                                                "example": 144.5
+                                            },
+                                            "volume": {
+                                                "description": "Volume of stocks traded",
+                                                "type": "number",
+                                                "example": 1000000
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getAllLatestStockPrices": {
+            "get": {
+                "tags": [
+                    "Stock Prices"
+                ],
+                "summary": "Get all latest stock prices",
+                "operationId": "c1f6d99010547ba56f6eb52516e02eff",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "symbol": {
+                                                "description": "Stock symbol",
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "description": "Stock price",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getStockPricePolygon": {
+            "get": {
+                "tags": [
+                    "Stock Prices"
+                ],
+                "summary": "Stock Prices for a predifined stocks",
+                "operationId": "6ed484012bc2bacab3e191cfa5a84579",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "properties": {
+                                            "symbol": {
+                                                "description": "Stock symbol",
+                                                "type": "string",
+                                                "example": "AAPL"
+                                            },
+                                            "open": {
+                                                "description": "Opening price",
+                                                "type": "number",
+                                                "example": 145.67
+                                            },
+                                            "close": {
+                                                "description": "Closing price",
+                                                "type": "number",
+                                                "example": 146.78
+                                            },
+                                            "high": {
+                                                "description": "Highest price",
+                                                "type": "number",
+                                                "example": 147
+                                            },
+                                            "low": {
+                                                "description": "Lowest price",
+                                                "type": "number",
+                                                "example": 144.5
+                                            },
+                                            "volume": {
+                                                "description": "Volume of stocks traded",
+                                                "type": "number",
+                                                "example": 1000000
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/insertStockPrices": {
+            "post": {
+                "tags": [
+                    "Stock Prices"
+                ],
+                "summary": "Insert stock data for a predifened set of stocks",
+                "operationId": "7e9ac045e65847651c9c3dee9f228457",
+                "responses": {
+                    "200": {
+                        "description": "Successful insertion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "symbol": {
+                                            "description": "Stock symbol",
+                                            "type": "string",
+                                            "example": "AAPL"
+                                        },
+                                        "date": {
+                                            "description": "Date of the stock prices",
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-06-05"
+                                        },
+                                        "open": {
+                                            "description": "Opening price",
+                                            "type": "number",
+                                            "example": 145.67
+                                        },
+                                        "close": {
+                                            "description": "Closing price",
+                                            "type": "number",
+                                            "example": 146.78
+                                        },
+                                        "high": {
+                                            "description": "Highest price",
+                                            "type": "number",
+                                            "example": 147
+                                        },
+                                        "low": {
+                                            "description": "Lowest price",
+                                            "type": "number",
+                                            "example": 144.5
+                                        },
+                                        "volume": {
+                                            "description": "Volume of stocks traded",
+                                            "type": "number",
+                                            "example": 1000000
+                                        },
+                                        "after_hours": {
+                                            "description": "After hours price",
+                                            "type": "number",
+                                            "example": 148
+                                        },
+                                        "pre_market": {
+                                            "description": "Pre market price",
+                                            "type": "number",
+                                            "example": 143
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "description": "API rate limit exceeded"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/stock-prices/{symbol}/{date}": {
+            "get": {
+                "tags": [
+                    "Stock Prices"
+                ],
+                "summary": "Get stock prices by symbol and date",
+                "operationId": "270b9baf955f2c1724948616cc223482",
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "Stock symbol",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "AAPL"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "Date for which to fetch the stock prices",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2023-06-05"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "symbol": {
+                                            "description": "Stock symbol",
+                                            "type": "string",
+                                            "example": "AAPL"
+                                        },
+                                        "date": {
+                                            "description": "Date of the stock prices",
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-06-05"
+                                        },
+                                        "open": {
+                                            "description": "Opening price",
+                                            "type": "number",
+                                            "example": 145.67
+                                        },
+                                        "close": {
+                                            "description": "Closing price",
+                                            "type": "number",
+                                            "example": 146.78
+                                        },
+                                        "high": {
+                                            "description": "Highest price",
+                                            "type": "number",
+                                            "example": 147
+                                        },
+                                        "low": {
+                                            "description": "Lowest price",
+                                            "type": "number",
+                                            "example": 144.5
+                                        },
+                                        "volume": {
+                                            "description": "Volume of stocks traded",
+                                            "type": "number",
+                                            "example": 1000000
+                                        },
+                                        "after_hours": {
+                                            "description": "After hours price",
+                                            "type": "number",
+                                            "example": 148
+                                        },
+                                        "pre_market": {
+                                            "description": "Pre market price",
+                                            "type": "number",
+                                            "example": 143
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Stock symbol or data not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Stock symbol not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getPriceChange": {
+            "post": {
+                "tags": [
+                    "Stock Prices"
+                ],
+                "summary": "Calculate price change for given symbols between two dates",
+                "operationId": "36ec82345b080e4c4f8ac2a0c6b3afe6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "symbols": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "AAPL",
+                                            "GOOG",
+                                            "MSFT"
+                                        ]
+                                    },
+                                    "start_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-01-01"
+                                    },
+                                    "end_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-01-31"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "description": "Price change percentage",
+                                        "type": "number",
+                                        "example": 0.05
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input parameters"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    }
+}
