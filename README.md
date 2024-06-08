@@ -30,7 +30,6 @@ DB_DATABASE=your-database-name
 DB_USERNAME=your-database-username
 DB_PASSWORD=your-database-password
 
-ALPHA_VANTAGE_API_KEY=your-alpha-vantage-api-key
 POLYGON_API_KEY=your-polygon-api-key
 
 
