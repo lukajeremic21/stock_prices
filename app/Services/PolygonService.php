@@ -26,7 +26,8 @@ class PolygonService
     public function getAllLatestStockPrices()
     {
         $results = [];
-        $previousDate = Carbon::now()->subDay()->toDateString();
+        
+        $previousDate = Carbon::now()->subDays(3)->toDateString();
 
         try {
             $response = $this->client->get("https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/{$previousDate}?adjusted=true", [
@@ -72,7 +73,8 @@ class PolygonService
         }
     
         $stockPrices = [];
-        $previousDate = Carbon::now()->subDay()->toDateString();
+        
+$previousDate = Carbon::now()->subDays(3)->toDateString();
         $errors = [];
     
         foreach ($this->stocks as $symbol) {
@@ -186,7 +188,8 @@ class PolygonService
                 continue;
             }
     
-            $previousDate = Carbon::now()->subDay()->toDateString();
+            
+$previousDate = Carbon::now()->subDays(3)->toDateString();
     
             try {
                 $response = $this->client->get('https://api.polygon.io/v1/open-close/' . $symbol . '/' . $previousDate, [
@@ -232,7 +235,8 @@ class PolygonService
     // Insert stock market prices into table every minute
     public function insertStockPrices()
     {
-        $previousDate = Carbon::now()->subDay()->toDateString();
+        
+        $previousDate = Carbon::now()->subDays(3)->toDateString();
         $errors = [];
 
 
